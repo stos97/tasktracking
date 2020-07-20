@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EditProfileRequest;
+use App\Http\Requests\UploadImageRequest;
 use App\Repositories\UserRepository;
 use App\Traits\ResponseTrait;
 use App\Transformers\UserTransformer;
@@ -64,6 +65,22 @@ class UserController extends Controller
             $data['password'] = Hash::make($data['password']);
         }
         $user = $this->repository->update($data, $request->user()->id);
+
+        return $this->transform($user, UserTransformer::class);
+    }
+
+    /**
+     * @param UploadImageRequest $request
+     *
+     * @return array
+     * @throws \Prettus\Validator\Exceptions\ValidatorException
+     */
+    public function uploadImage(UploadImageRequest $request)
+    {
+        $image = $request->file('img');
+        $imageName = $image->hashName();
+        $image->move(public_path(config('/')), $imageName);
+        $user = $this->repository->update(['img' => $imageName], $request->user()->id);
 
         return $this->transform($user, UserTransformer::class);
     }
