@@ -18,14 +18,14 @@ class UserTableSeeder extends Seeder
         User::create([
             'name' => 'stevan',
             'username' => 'tos',
-            'email' => 'stevann.tosic@gamil.com',
+            'email' => 'stevann.tosic@gmail.com',
             'password' => \Illuminate\Support\Facades\Hash::make('123456'),
         ]);
 
         User::create([
             'name' => 'milos',
             'username' => 'tripko',
-            'email' => 'milos.tripkovic@gamil.com',
+            'email' => 'milos.tripkovic@gmail.com',
             'password' => \Illuminate\Support\Facades\Hash::make('123456'),
         ]);
     }
