@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'api',
         'passwords' => 'users',
     ],
 
@@ -42,9 +42,8 @@ return [
         ],
 
         'api' => [
-            'driver' => 'token',
+            'driver' => 'passport',
             'provider' => 'users',
-            'hash' => false,
         ],
     ],
 
@@ -113,5 +112,11 @@ return [
     */
 
     'password_timeout' => 10800,
+
+    'passport' => [
+        'grant_type'    => env('PASSPORT_GRANT_TYPE', 'password'),
+        'client_id'     => env('CLIENT_WEB_ADMIN_ID', ''),
+        'client_secret' => env('CLIENT_WEB_ADMIN_SECRET', ''),
+    ]
 
 ];
