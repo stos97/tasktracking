@@ -37,7 +37,12 @@ class ProjectMemberCriteria implements CriteriaInterface
     public function apply($model, RepositoryInterface $repository)
     {
         return $model
-            ->has('users')
-            ->orWhere('user_id', $this->user->id);
+            ->leftJoin('project_user', 'project_user.project_id', '=', 'projects.id')
+            ->where(function ($query) {
+               $query
+                   ->where('projects.user_id', $this->user->id)
+                   ->orWhere('project_user.user_id', $this->user->id);
+            })
+            ->select('projects.*');
     }
 }
