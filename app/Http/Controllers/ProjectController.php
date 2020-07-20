@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateProjectRequest;
 use App\Project;
+use App\Repositories\Criterias\ProjectMemberCriteria;
 use App\Repositories\ProjectRepository;
 use App\Traits\ResponseTrait;
 use App\Transformers\ProjectTransformer;
+use Illuminate\Http\Request;
 
 /**
  * Class ProjectController
@@ -68,5 +70,18 @@ class ProjectController extends Controller
         $this->repository->delete($project->id);
 
         return $this->noContent();
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return array
+     * @throws \Prettus\Repository\Exceptions\RepositoryException
+     */
+    public function getMyProjects(Request $request)
+    {
+        $this->repository->pushCriteria(new ProjectMemberCriteria($request->user()));
+
+        return $this->transform($this->repository->paginate(), ProjectTransformer::class);
     }
 }
