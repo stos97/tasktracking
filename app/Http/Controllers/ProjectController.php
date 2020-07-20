@@ -57,4 +57,16 @@ class ProjectController extends Controller
     {
         return $this->transform($project, ProjectTransformer::class);
     }
+
+    /**
+     * @param Project $project
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function delete(Project $project)
+    {
+        $this->repository->delete($project->id);
+
+        return $this->noContent();
+    }
 }
