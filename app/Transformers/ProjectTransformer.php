@@ -36,7 +36,7 @@ class ProjectTransformer extends AbstractTransformer
      */
     public function includeOwner(Project $project)
     {
-        return $this->item($project->owner, UserTransformer::class);
+        return $this->item($project->owner, new UserTransformer());
     }
 
     /**
@@ -46,6 +46,6 @@ class ProjectTransformer extends AbstractTransformer
      */
     public function includeUsers(Project $project)
     {
-        return $this->collection($project->users, UserTransformer::class);
+        return $this->collection($project->users, new UserTransformer());
     }
 }

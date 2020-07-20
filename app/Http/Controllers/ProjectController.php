@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateProjectRequest;
+use App\Project;
 use App\Repositories\ProjectRepository;
 use App\Traits\ResponseTrait;
 use App\Transformers\ProjectTransformer;
-use Illuminate\Http\Request;
 
 /**
  * Class ProjectController
@@ -45,6 +45,16 @@ class ProjectController extends Controller
 
         $project = $this->repository->create($data);
 
+        return $this->transform($project, ProjectTransformer::class);
+    }
+
+    /**
+     * @param Project $project
+     *
+     * @return array
+     */
+    public function get(Project $project)
+    {
         return $this->transform($project, ProjectTransformer::class);
     }
 }
