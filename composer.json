@@ -15,7 +15,8 @@
         "laravel/framework": "^7.0",
         "laravel/passport": "^9.3",
         "laravel/tinker": "^2.0",
-        "prettus/l5-repository": "^2.6"
+        "prettus/l5-repository": "^2.6",
+        "spatie/laravel-fractal": "^5.7"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
