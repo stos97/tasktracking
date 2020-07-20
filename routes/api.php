@@ -21,6 +21,7 @@ Route::middleware('auth:api')->group(function () {
     Route::prefix('/users')->group(function () {
         Route::get('/', 'UserController@getAll');
         Route::put('/', 'UserController@editProfile');
+        Route::post('/images', 'UserController@uploadImage');
     });
 });
 
