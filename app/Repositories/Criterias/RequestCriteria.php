@@ -10,6 +10,11 @@ use Prettus\Repository\Contracts\CriteriaInterface;
 use Prettus\Repository\Contracts\RepositoryInterface;
 use Exception;
 
+/**
+ * Class RequestCriteria
+ *
+ * @package App\Repositories\Criterias
+ */
 class RequestCriteria implements CriteriaInterface
 {
     /**
