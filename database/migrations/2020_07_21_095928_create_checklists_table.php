@@ -5,9 +5,9 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 /**
- * Class CreateStatusesTable
+ * Class CreateChecklistsTable
  */
-class CreateStatusesTable extends Migration
+class CreateChecklistsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,7 +16,7 @@ class CreateStatusesTable extends Migration
      */
     public function up()
     {
-        Schema::create('statuses', function (Blueprint $table) {
+        Schema::create('checklists', function (Blueprint $table) {
             $table->id();
             $table->string('title', 30);
             $table->unsignedBigInteger('project_id');
@@ -37,6 +37,6 @@ class CreateStatusesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('statuses');
+        Schema::dropIfExists('checklists');
     }
 }

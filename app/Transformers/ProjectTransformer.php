@@ -14,7 +14,7 @@ class ProjectTransformer extends AbstractTransformer
     protected $availableIncludes = [
         'owner',
         'users',
-        'statuses',
+        'checklists',
     ];
 
     /**
@@ -55,8 +55,8 @@ class ProjectTransformer extends AbstractTransformer
      *
      * @return \League\Fractal\Resource\Collection
      */
-    public function includeStatuses(Project $project)
+    public function includeChecklists(Project $project)
     {
-        return $this->collection($project->statuses, new StatusTransformer());
+        return $this->collection($project->checklists, new ChecklistTransformer());
     }
 }

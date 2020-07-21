@@ -48,8 +48,8 @@ class Project extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function statuses()
+    public function checklists()
     {
-        return $this->hasMany(Status::class);
+        return $this->hasMany(Checklist::class);
     }
 }

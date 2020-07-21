@@ -5,11 +5,11 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Status
+ * Class Checklist
  *
  * @package App
  */
-class Status extends Model
+class Checklist extends Model
 {
     /**
      * @var string[]
