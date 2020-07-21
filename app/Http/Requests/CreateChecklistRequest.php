@@ -9,8 +9,15 @@ use Illuminate\Foundation\Http\FormRequest;
  *
  * @package App\Http\Requests
  */
-class CreateChecklistRequest extends FormRequest
+class CreateChecklistRequest extends Request
 {
+    /**
+     * @var string[]
+     */
+    protected $decode = [
+        'project_id',
+    ];
+
     /**
      * Determine if the user is authorized to make this request.
      *

@@ -19,7 +19,7 @@ class UserTransformer extends AbstractTransformer
     public function transform(User $user)
     {
         return [
-            'id'       => $user->id,
+            'id'       => $user->getRouteKey(),
             'name'     => $user->name,
             'email'    => $user->email,
             'username' => $user->username,
