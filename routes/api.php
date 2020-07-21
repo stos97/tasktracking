@@ -30,6 +30,10 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/{project}', 'ProjectController@get')->middleware('can:teamMemberAction,project');
         Route::delete('/{project}', 'ProjectController@delete')->middleware('can:ownerAction,project');
     });
+
+    Route::prefix('checklists')->group(function () {
+        Route::post('/', 'ChecklistController@create');
+    });
 });
 
 Route::post('/register', 'UserRegistrationController@register');

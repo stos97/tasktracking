@@ -44,4 +44,12 @@ class Project extends Model
     {
         return $this->users()->where('project_user.user_id', $user->id)->exists();
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function checklists()
+    {
+        return $this->hasMany(Checklist::class);
+    }
 }
