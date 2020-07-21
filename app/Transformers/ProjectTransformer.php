@@ -25,7 +25,7 @@ class ProjectTransformer extends AbstractTransformer
     public function transform(Project $project)
     {
         return [
-            'id'    => $project->id,
+            'id'    => $project->getRouteKey(),
             'title' => $project->title,
         ];
     }
