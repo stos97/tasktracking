@@ -27,7 +27,7 @@ Route::middleware('auth:api')->group(function () {
     Route::prefix('projects')->group(function () {
         Route::get('/', 'ProjectController@getMyProjects');
         Route::post('/', 'ProjectController@create');
-        Route::get('/{project}', 'ProjectController@get');
+        Route::get('/{project}', 'ProjectController@get')->middleware('can:teamMemberAction,project');
         Route::delete('/{project}', 'ProjectController@delete')->middleware('can:ownerAction,project');
     });
 });
