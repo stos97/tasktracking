@@ -14,6 +14,7 @@ class ProjectTransformer extends AbstractTransformer
     protected $availableIncludes = [
         'owner',
         'users',
+        'statuses',
     ];
 
     /**
@@ -47,5 +48,15 @@ class ProjectTransformer extends AbstractTransformer
     public function includeUsers(Project $project)
     {
         return $this->collection($project->users, new UserTransformer());
+    }
+
+    /**
+     * @param Project $project
+     *
+     * @return \League\Fractal\Resource\Collection
+     */
+    public function includeStatuses(Project $project)
+    {
+        return $this->collection($project->statuses, new StatusTransformer());
     }
 }
