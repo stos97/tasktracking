@@ -34,4 +34,14 @@ class Project extends Model
     {
         return $this->belongsToMany(User::class, 'project_user');
     }
+
+    /**
+     * @param User $user
+     *
+     * @return bool
+     */
+    public function isTeamMember(User $user)
+    {
+        return $this->users()->where('project_user.user_id', $user->id)->exists();
+    }
 }
