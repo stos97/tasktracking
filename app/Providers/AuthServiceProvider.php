@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Checklist;
+use App\Policies\ChecklistPolicy;
 use App\Policies\ProjectPolicy;
 use App\Project;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -16,7 +18,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Model' => 'App\Policies\ModelPolicy',
-        Project::class => ProjectPolicy::class,
+        Project::class   => ProjectPolicy::class,
+        Checklist::class => ChecklistPolicy::class,
     ];
 
     /**

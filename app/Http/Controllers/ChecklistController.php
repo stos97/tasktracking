@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Checklist;
 use App\Http\Requests\CreateChecklistRequest;
 use App\Repositories\ChecklistRepository;
 use App\Traits\ResponseTrait;
@@ -44,5 +45,17 @@ class ChecklistController extends Controller
         $checklist = $this->repository->create($data);
 
         return $this->transform($checklist, ChecklistTransformer::class);
+    }
+
+    /**
+     * @param Checklist $checklist
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function delete(Checklist $checklist)
+    {
+        $this->repository->delete($checklist->id);
+
+        return $this->noContent();
     }
 }
