@@ -37,6 +37,10 @@ Route::middleware('auth:api')->group(function () {
         Route::put('/{checklist}', 'ChecklistController@update')->middleware('can:teamMemberAction,checklist');
         Route::get('/{project}', 'ChecklistController@getAll')->middleware('can:teamMemberAction,project');
     });
+
+    Route::prefix('tasks')->group(function () {
+        Route::post('/', 'TaskController@create');
+    });
 });
 
 Route::post('/register', 'UserRegistrationController@register');
