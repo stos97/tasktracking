@@ -33,7 +33,8 @@ Route::middleware('auth:api')->group(function () {
 
     Route::prefix('checklists')->group(function () {
         Route::post('/', 'ChecklistController@create');
-        Route::delete('/{checklist}', 'ChecklistController@delete')->middleware('can:teamMemberAction,checklist');;
+        Route::delete('/{checklist}', 'ChecklistController@delete')->middleware('can:teamMemberAction,checklist');
+        Route::put('/{checklist}', 'ChecklistController@update')->middleware('can:teamMemberAction,checklist');
     });
 });
 
