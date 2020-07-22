@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateTaskRequest;
+use App\Http\Requests\UpdateTaskRequest;
 use App\Repositories\TaskRepository;
 use App\Task;
 use App\Traits\ResponseTrait;
@@ -54,6 +55,30 @@ class TaskController extends Controller
      */
     public function getOne(Task $task)
     {
+        return $this->transform($task, TaskTransformer::class);
+    }
+
+    /**
+     * @param Task              $task
+     * @param UpdateTaskRequest $request
+     *
+     * @return array
+     * @throws \Prettus\Validator\Exceptions\ValidatorException
+     */
+    public function update(Task $task, UpdateTaskRequest $request)
+    {
+        $data = $request->only([
+            'title',
+            'description',
+            'checklist_id',
+        ]);
+
+        $task = $this->repository->update($data, $task->id);
+
+        if ($request->has('users')) {
+            $task->users()->sync($request->users);
+        }
+
         return $this->transform($task, TaskTransformer::class);
     }
 }
