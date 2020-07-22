@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateTaskRequest;
 use App\Repositories\TaskRepository;
+use App\Task;
 use App\Traits\ResponseTrait;
 use App\Transformers\TaskTransformer;
 use Illuminate\Http\Request;
@@ -43,6 +44,16 @@ class TaskController extends Controller
         $data = $request->validated();
         $task = $this->repository->create($data);
 
+        return $this->transform($task, TaskTransformer::class);
+    }
+
+    /**
+     * @param Task $task
+     *
+     * @return array
+     */
+    public function getOne(Task $task)
+    {
         return $this->transform($task, TaskTransformer::class);
     }
 }

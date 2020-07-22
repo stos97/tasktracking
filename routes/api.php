@@ -40,6 +40,7 @@ Route::middleware('auth:api')->group(function () {
 
     Route::prefix('tasks')->group(function () {
         Route::post('/', 'TaskController@create');
+        Route::get('/{task}', 'TaskController@getOne')->middleware('can:teamMemberAction,task');
     });
 });
 
