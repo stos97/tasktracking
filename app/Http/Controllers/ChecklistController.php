@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Checklist;
 use App\Http\Requests\CreateChecklistRequest;
+use App\Http\Requests\UpdateChecklistRequest;
 use App\Repositories\ChecklistRepository;
 use App\Traits\ResponseTrait;
 use App\Transformers\ChecklistTransformer;
@@ -57,5 +58,20 @@ class ChecklistController extends Controller
         $this->repository->delete($checklist->id);
 
         return $this->noContent();
+    }
+
+    /**
+     * @param Checklist              $checklist
+     * @param UpdateChecklistRequest $request
+     *
+     * @return array
+     * @throws \Prettus\Validator\Exceptions\ValidatorException
+     */
+    public function update(Checklist $checklist, UpdateChecklistRequest $request)
+    {
+        $data = $request->validated();
+        $checklist = $this->repository->update($data, $checklist->id);
+
+        return $this->transform($checklist, ChecklistTransformer::class);
     }
 }
