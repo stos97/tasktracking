@@ -16,6 +16,7 @@ class TaskTransformer extends AbstractTransformer
      */
     protected $availableIncludes = [
         'users',
+        'checklist',
     ];
 
     /**
@@ -40,5 +41,15 @@ class TaskTransformer extends AbstractTransformer
     public function includeUsers(Task $task)
     {
         return $this->collection($task->users, new UserTransformer());
+    }
+
+    /**
+     * @param Task $task
+     *
+     * @return \League\Fractal\Resource\Item
+     */
+    public function includeChecklist(Task $task)
+    {
+        return $this->item($task->checklist, new ChecklistTransformer());
     }
 }
