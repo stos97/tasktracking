@@ -50,4 +50,12 @@ class Project extends Model
     {
         return $this->hasMany(Checklist::class);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
 }
