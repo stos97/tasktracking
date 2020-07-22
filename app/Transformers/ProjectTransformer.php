@@ -15,6 +15,7 @@ class ProjectTransformer extends AbstractTransformer
         'owner',
         'users',
         'checklists',
+        'tasks',
     ];
 
     /**
@@ -58,5 +59,15 @@ class ProjectTransformer extends AbstractTransformer
     public function includeChecklists(Project $project)
     {
         return $this->collection($project->checklists, new ChecklistTransformer());
+    }
+
+    /**
+     * @param Project $project
+     *
+     * @return \League\Fractal\Resource\Collection
+     */
+    public function includeTasks(Project $project)
+    {
+        return $this->collection($project->tasks, new TaskTransformer());
     }
 }

@@ -12,6 +12,13 @@ use App\Checklist;
 class ChecklistTransformer extends AbstractTransformer
 {
     /**
+     * @var string[]
+     */
+    protected $availableIncludes = [
+        'tasks',
+    ];
+
+    /**
      * @param Checklist $checklist
      *
      * @return array
@@ -22,5 +29,15 @@ class ChecklistTransformer extends AbstractTransformer
             'id'    => $checklist->getRouteKey(),
             'title' => $checklist->title,
         ];
+    }
+
+    /**
+     * @param Checklist $checklist
+     *
+     * @return \League\Fractal\Resource\Collection
+     */
+    public function includeTasks(Checklist $checklist)
+    {
+        return $this->collection($checklist->tasks, new TaskTransformer());
     }
 }
