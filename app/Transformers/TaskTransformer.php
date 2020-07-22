@@ -12,6 +12,13 @@ use App\Task;
 class TaskTransformer extends AbstractTransformer
 {
     /**
+     * @var string[]
+     */
+    protected $availableIncludes = [
+        'users',
+    ];
+
+    /**
      * @param Task $task
      *
      * @return array
@@ -25,4 +32,13 @@ class TaskTransformer extends AbstractTransformer
         ];
     }
 
+    /**
+     * @param Task $task
+     *
+     * @return \League\Fractal\Resource\Collection
+     */
+    public function includeUsers(Task $task)
+    {
+        return $this->collection($task->users, new UserTransformer());
+    }
 }
