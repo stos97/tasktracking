@@ -24,6 +24,5 @@ class ChecklistPolicy
     public function teamMemberAction(User $user, Checklist $checklist)
     {
         return $checklist->project->isTeamMember($user) || $checklist->project->user_id == $user->id;
-//        return $project->isTeamMember($user) || $project->user_id == $user->id;
     }
 }
