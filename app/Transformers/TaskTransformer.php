@@ -19,6 +19,7 @@ class TaskTransformer extends AbstractTransformer
     public function transform(Task $task)
     {
         return [
+            'id'          => $task->getRouteKey(),
             'title'       => $task->title,
             'description' => $task->description,
         ];
