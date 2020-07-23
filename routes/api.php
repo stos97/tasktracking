@@ -45,6 +45,7 @@ Route::middleware('auth:api')->group(function () {
 
         Route::prefix('/{task}/comments')->group(function () {
             Route::post('/', 'TaskCommentController@addComment');
+            Route::delete('/{comment}', 'TaskCommentController@delete')->middleware('can:ownerAction,comment');;
         });
     });
 });

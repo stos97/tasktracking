@@ -34,4 +34,18 @@ class TaskCommentController extends Controller
 
         return $this->transform($comment, CommentTransformer::class);
     }
+
+    /**
+     * @param Task    $task
+     * @param Comment $comment
+     *
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
+     */
+    public function delete(Task $task, Comment $comment)
+    {
+        $comment->delete();
+
+        return $this->noContent();
+    }
 }

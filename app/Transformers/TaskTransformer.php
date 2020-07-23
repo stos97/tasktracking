@@ -61,6 +61,6 @@ class TaskTransformer extends AbstractTransformer
      */
     public function includeComments(Task $task)
     {
-        return $this->collection($task->comments->orderBy('created_at'), new CommentTransformer());
+        return $this->collection($task->comments, new CommentTransformer());
     }
 }
