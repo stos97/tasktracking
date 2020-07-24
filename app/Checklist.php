@@ -18,6 +18,13 @@ class Checklist extends Model
     ];
 
     /**
+     * @var string[]
+     */
+    protected $withCount = [
+        'tasks',
+    ];
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function project()

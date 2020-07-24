@@ -26,8 +26,9 @@ class ChecklistTransformer extends AbstractTransformer
     public function transform(Checklist $checklist)
     {
         return [
-            'id'    => $checklist->getRouteKey(),
-            'title' => $checklist->title,
+            'id'          => $checklist->getRouteKey(),
+            'title'       => $checklist->title,
+            'tasks_count' => $checklist->tasks_count,
         ];
     }
 
