@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Project;
+use App\Repositories\Criterias\ProjectBookmarkCriteria;
+use App\Repositories\ProjectRepository;
 use App\Traits\ResponseTrait;
+use App\Transformers\ProjectTransformer;
 use Illuminate\Http\Request;
 
 /**
@@ -14,6 +17,21 @@ use Illuminate\Http\Request;
 class ProjectBookmarkController extends Controller
 {
     use ResponseTrait;
+
+    /**
+     * @var ProjectRepository
+     */
+    private $repository;
+
+    /**
+     * ProjectBookmarkController constructor.
+     *
+     * @param ProjectRepository $repository
+     */
+    public function __construct(ProjectRepository $repository)
+    {
+        $this->repository = $repository;
+    }
 
     /**
      * @param Project $project
@@ -39,5 +57,18 @@ class ProjectBookmarkController extends Controller
         $project->bookmarks()->detach($request->user()->id);
 
         return $this->noContent();
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return array
+     * @throws \Prettus\Repository\Exceptions\RepositoryException
+     */
+    public function getAll(Request $request)
+    {
+        $this->repository->pushCriteria(new ProjectBookmarkCriteria($request->user()));
+
+        return $this->transform($this->repository->paginate(), ProjectTransformer::class);
     }
 }
