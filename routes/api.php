@@ -51,6 +51,7 @@ Route::middleware('auth:api')->group(function () {
 
     Route::prefix('bookmarks')->group(function () {
         Route::post('/projects/{project}', 'ProjectBookmarkController@addProjectBookmark');
+        Route::delete('/projects/{project}', 'ProjectBookmarkController@removeProjectBookmark');
     });
 });
 
