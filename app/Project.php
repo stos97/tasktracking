@@ -64,6 +64,6 @@ class Project extends Model
      */
     public function bookmarks()
     {
-        return $this->morphToMany(User::class, 'bookmarkable', 'bookmakrs');
+        return $this->morphToMany(User::class, 'bookmarkable', 'bookmarks');
     }
 }

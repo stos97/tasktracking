@@ -48,6 +48,10 @@ Route::middleware('auth:api')->group(function () {
             Route::delete('/{comment}', 'TaskCommentController@delete')->middleware('can:ownerAction,comment');;
         });
     });
+
+    Route::prefix('bookmarks')->group(function () {
+        Route::post('/projects/{project}', 'ProjectBookmarkController@addProjectBookmark');
+    });
 });
 
 Route::post('/register', 'UserRegistrationController@register');
