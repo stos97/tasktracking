@@ -66,4 +66,21 @@ class Project extends Model
     {
         return $this->morphToMany(User::class, 'bookmarkable', 'bookmarks');
     }
+
+    /**
+     * @param User $user
+     *
+     * @return bool
+     */
+    public function isBookmarked(User $user)
+    {
+        return $this
+            ->bookmarks()
+            ->where([
+                'user_id'           => $user->id,
+                'bookmarkable_id'   => $this->id,
+                'bookmarkable_type' => Project::class,
+            ])
+            ->exists();
+    }
 }
