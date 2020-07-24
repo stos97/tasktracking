@@ -58,4 +58,12 @@ class Project extends Model
     {
         return $this->hasMany(Task::class);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+     */
+    public function bookmarks()
+    {
+        return $this->morphToMany(User::class, 'bookmarkable', 'bookmakrs');
+    }
 }
