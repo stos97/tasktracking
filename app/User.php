@@ -63,4 +63,12 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Task::class, 'task_user');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+     */
+    public function bookmarks()
+    {
+        return $this->morphedByMany(Project::class, 'bookmarkable', 'bookmarks');
+    }
 }
