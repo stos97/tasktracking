@@ -18,7 +18,7 @@ class CreateInvitationsTable extends Migration
     {
         Schema::create('invitations', function (Blueprint $table) {
             $table->id();
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('token', 16)->unique();
             $table->unsignedBigInteger('project_id');
 
