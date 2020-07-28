@@ -54,7 +54,13 @@ Route::middleware('auth:api')->group(function () {
         Route::post('/projects/{project}', 'ProjectBookmarkController@addProjectBookmark');
         Route::delete('/projects/{project}', 'ProjectBookmarkController@removeProjectBookmark');
     });
+
+    Route::prefix('invitations')->group(function () {
+        Route::post('/send', 'InvitationController@send');
+
+    });
 });
 
+Route::get('invitations/accept/{token}', 'InvitationController@accept')->name('accept');
 Route::post('/register', 'UserRegistrationController@register');
 Route::post('/login', 'LoginController@login');
