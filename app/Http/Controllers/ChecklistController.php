@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Checklist;
+use App\Events\ChecklistCreatedEvent;
 use App\Http\Requests\CreateChecklistRequest;
 use App\Http\Requests\UpdateChecklistRequest;
 use App\Project;
@@ -46,6 +47,8 @@ class ChecklistController extends Controller
     {
         $data = $request->validated();
         $checklist = $this->repository->create($data);
+
+        broadcast(new ChecklistCreatedEvent($checklist));
 
         return $this->transform($checklist, ChecklistTransformer::class);
     }
