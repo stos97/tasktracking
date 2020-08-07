@@ -1,11 +1,14 @@
 {
-	"authHost": "localhost",
+	"authHost": "http://api.tasktracking.local",
 	"authEndpoint": "/broadcasting/auth",
 	"clients": [],
 	"database": "redis",
 	"databaseConfig": {
 		"redis": {
 			"host": "laradock_redis_1"
+		},
+		"sqlite": {
+			"databasePath": "/database/laravel-echo-server.sqlite"
 		}
 	},
 	"devMode": true,
