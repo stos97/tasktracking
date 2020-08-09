@@ -19,11 +19,26 @@ class UserTransformer extends AbstractTransformer
     public function transform(User $user)
     {
         return [
-            'id'       => $user->id,
+            'id'       => $user->getRouteKey(),
             'name'     => $user->name,
             'email'    => $user->email,
             'username' => $user->username,
             'bio'      => $user->bio,
+            'img'      => $this->getUserImage($user),
         ];
+    }
+
+    /**
+     * @param User $user
+     *
+     * @return string|null
+     */
+    private function getUserImage(User $user)
+    {
+        if (!$user->img) {
+            return null;
+        }
+
+        return asset(config('/') . $user->img);
     }
 }

@@ -6,11 +6,15 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use Mtvs\EloquentHashids\HasHashid;
+use Mtvs\EloquentHashids\HashidRouting;
 
 class User extends Authenticatable
 {
     use Notifiable;
     use HasApiTokens;
+    use HashidRouting;
+    use HasHashid;
 
     /**
      * The attributes that are mass assignable.
@@ -23,6 +27,7 @@ class User extends Authenticatable
         'password',
         'username',
         'bio',
+        'img',
     ];
 
     /**
@@ -42,4 +47,28 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class, 'project_user');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function tasks()
+    {
+        return $this->belongsToMany(Task::class, 'task_user');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+     */
+    public function bookmarks()
+    {
+        return $this->morphedByMany(Project::class, 'bookmarkable', 'bookmarks');
+    }
 }
