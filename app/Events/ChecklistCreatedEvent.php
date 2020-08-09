@@ -42,7 +42,7 @@ class ChecklistCreatedEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('project' . $this->checklist->project_id);
+        return new PrivateChannel('project.' . $this->checklist->project_id);
     }
 
     /**
@@ -53,5 +53,13 @@ class ChecklistCreatedEvent implements ShouldBroadcast
         return [
             'data' => $this->checklist,
         ];
+    }
+
+    /**
+     * @return string
+     */
+    public function broadcastAs()
+    {
+        return 'ChecklistCreatedEvent';
     }
 }
